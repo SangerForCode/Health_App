@@ -12,9 +12,14 @@
       "supportsTablet": true
     },
     "android": {
+      "statusBar": {
+        "barStyle": "dark-content",
+        "backgroundColor": "#f7f9fc",
+        
+      },
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
