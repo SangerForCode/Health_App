@@ -90,20 +90,17 @@ We welcome contributions! Follow these steps:
 ---
 
 ## **📜 License**  
-This project is licensed under the **MIT License** – see [LICENSE](LICENSE) for details.  
+This project is licensed under the **Ayush Sanger LLC** – see [LICENSE](LICENSE) for details.  
 
 ---
 
 ## **📞 Contact**  
-- **Email**: your-email@example.com  
-- **LinkedIn**: [Your Profile](https://linkedin.com/in/your-profile)  
-- **Website**: [yourwebsite.com](https://yourwebsite.com)  
+- **Email**: Sangerforbusiness@gmail.com  
+- **LinkedIn**: [Ayush Sanger]([https://linkedin.com/in/your-profile](https://www.linkedin.com/in/ayushsanger/))    
 
 ---
 
 ### **🔗 Live Demo**  
-👉 [Try the app here!](https://yourapp-demo.com) *(If deployed)*  
+👉 [Try the app here!](will deploy soon) *(If deployed)*  
 
 ---
-
-This `README.md` will make your project **stand out** on GitHub and attract collaborators/users. Let me know if you’d like any modifications! 🚀
