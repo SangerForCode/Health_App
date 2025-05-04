@@ -1,6 +1,16 @@
-import { Stack } from 'expo-router';
+import { Slot } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Platform } from 'react-native';
+
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList {
+      '/': undefined;
+      '/input': undefined;
+      '/history': undefined;
+    }
+  }
+}
 
 export default function RootLayout() {
   return (
@@ -13,16 +23,7 @@ export default function RootLayout() {
         backgroundColor="transparent"
         translucent
       />
-      <Stack>
-        <Stack.Screen 
-          name="index" 
-          options={{
-            headerShown: false,
-            statusBarStyle: Platform.OS === 'ios' ? 'dark' : 'light',
-            statusBarTranslucent: true
-          }} 
-        />
-      </Stack>
+      <Slot />
     </>
   );
 }

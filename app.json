@@ -1,26 +1,37 @@
 {
   "expo": {
     "name": "MoodAI",
-    "slug": "MoodAI",
+    "slug": "moodai",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "moodai",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.your.moodai",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "android": {
       "statusBar": {
         "barStyle": "dark-content",
-        "backgroundColor": "#f7f9fc",
-        
+        "backgroundColor": "#f7f9fc"
       },
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.your.moodai"
     },
     "web": {
       "bundler": "metro",
@@ -37,10 +48,21 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
+      ],
+      [
+        "expo-auth-session",
+        {
+          "scheme": "moodai"
+        }
       ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "your-project-id"
+      }
     }
   }
 }

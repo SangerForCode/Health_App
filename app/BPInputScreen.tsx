@@ -11,6 +11,8 @@ import {
   ScrollView
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Href, router } from 'expo-router';
 
 export default function BPInputScreen() {
   const [systolic, setSystolic] = useState('');
@@ -18,14 +20,35 @@ export default function BPInputScreen() {
   const [pulse, setPulse] = useState('');
   const [notes, setNotes] = useState('');
 
-  const handleSubmit = () => {
-    console.log({
-      systolic,
-      diastolic,
-      pulse,
-      notes
-    });
-    alert(`BP Record Saved!\n${systolic}/${diastolic} | Pulse: ${pulse}`);
+  const handleSubmit = async () => {
+    try {
+      const newReading = {
+        systolic: parseInt(systolic),
+        diastolic: parseInt(diastolic),
+        pulse: parseInt(pulse),
+        notes,
+        timestamp: new Date().toISOString()
+      };
+
+      const existingReadingsStr = await AsyncStorage.getItem('bp_readings');
+      const existingReadings = existingReadingsStr ? JSON.parse(existingReadingsStr) : [];
+      const updatedReadings = [...existingReadings, newReading];
+      await AsyncStorage.setItem('bp_readings', JSON.stringify(updatedReadings));
+
+      setSystolic('');
+      setDiastolic('');
+      setPulse('');
+      setNotes('');
+
+      alert('BP Record Saved Successfully!');
+    } catch (error) {
+      console.error('Error saving reading:', error);
+      alert('Failed to save reading. Please try again.');
+    }
+  };
+
+  const handleViewHistory = () => {
+    router.replace('/(tabs)/history' as Href<any>);
   };
 
   return (
@@ -109,13 +132,20 @@ export default function BPInputScreen() {
                 <Text style={styles.submitButtonText}>Save Measurement</Text>
               </LinearGradient>
             </TouchableOpacity>
+
+            <TouchableOpacity 
+              style={[styles.submitButton, styles.historyButton]}
+              onPress={handleViewHistory}
+            >
+              <Text style={styles.historyButtonText}>View History</Text>
+            </TouchableOpacity>
           </ScrollView>
         </KeyboardAvoidingView>
       </SafeAreaView>
     </LinearGradient>
   );
 }
-//hehe
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -212,5 +242,18 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: 'white',
+  },
+  historyButton: {
+    backgroundColor: '#fff',
+    marginTop: 12,
+    borderWidth: 1,
+    borderColor: '#6e45e2',
+  },
+  historyButtonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#6e45e2',
+    textAlign: 'center',
+    paddingVertical: 18,
   },
 });
